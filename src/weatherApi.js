@@ -7,19 +7,23 @@ export const getWeatherInfo = async (cityName) => {
       `${API_URL}?q=${cityName}&appid=${API_KEY}&units=metric`
     );
     if (!response.ok) {
-      throw new Error("Failed to fetch weather data. Check the city name.");
+      if (response.status === 404) {
+        throw new Error("No such city/country exists");
+      }
+      throw new Error("Failed to fetch weather data");
     }
     const jsonResponse = await response.json();
-    const result = {
-      temp: jsonResponse.main.temp,
-      tempMin: jsonResponse.main.temp_min,
-      tempMax: jsonResponse.main.temp_max,
-      humidity: jsonResponse.main.humidity,
-      feelsLike: jsonResponse.main.feels_like,
-      weather: jsonResponse.weather[0].description,
+    return {
+      city: cityName,
+      temp: jsonResponse.main.temp || "N/A",
+      tempMin: jsonResponse.main.temp_min || "N/A",
+      tempMax: jsonResponse.main.temp_max || "N/A",
+      humidity: jsonResponse.main.humidity || "N/A",
+      feelsLike: jsonResponse.main.feels_like || "N/A",
+      weather: jsonResponse.weather[0].description || "N/A",
     };
-    return result;
   } catch (error) {
     console.error("Error fetching weather data:", error.message);
+    return { error: error.message }; 
   }
 };

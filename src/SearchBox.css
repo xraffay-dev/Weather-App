@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%; /* Adjust to fit parent container */
+    width: 100%;
   }
   
   .SearchBox form {

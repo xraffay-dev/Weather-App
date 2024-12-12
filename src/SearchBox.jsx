@@ -4,7 +4,7 @@ import Button from "@mui/material/Button";
 import "./SearchBox.css";
 import { getWeatherInfo } from "./weatherApi.js";
 
-export default function SearchBox() {
+export default function SearchBox({ updateInfo }) {
   const [cityName, setCity] = useState("");
 
   const handleInputChange = (event) => {
@@ -13,10 +13,9 @@ export default function SearchBox() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(cityName);
     const currentWeather = await getWeatherInfo(cityName);
-    console.log(currentWeather);
     setCity("");
+    updateInfo(currentWeather);
   };
 
   return (
