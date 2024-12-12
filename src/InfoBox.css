@@ -1,0 +1,10 @@
+.InfoBox {
+    display: flex;
+    flex-direction: column; /* Ensure vertical stacking */
+    align-items: center;
+    justify-content: flex-start; /* Align at the top */
+    padding: 16px;
+    /* min-height: 100vh; */
+    /* gap: 100px; */
+  }
+
