@@ -2,6 +2,7 @@ import { useState } from "react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import "./SearchBox.css";
+import { getWeatherInfo } from "./weatherApi.js";
 
 export default function SearchBox() {
   const [cityName, setCity] = useState("");
@@ -10,11 +11,14 @@ export default function SearchBox() {
     setCity(event.target.value);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     console.log(cityName);
+    const currentWeather = await getWeatherInfo(cityName);
+    console.log(currentWeather);
     setCity("");
   };
+
   return (
     <div className="SearchBox">
       <form onSubmit={handleSubmit}>
