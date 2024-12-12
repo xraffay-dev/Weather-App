@@ -5,18 +5,21 @@ import Typography from "@mui/material/Typography";
 import "./InfoBox.css";
 
 export default function InfoBox({ info }) {
-  const IMAGE_URL =
-    "https://images.unsplash.com/photo-1609931029519-b0c58e5f69c0?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
+  const CLOUD_URL =
+  "https://images.unsplash.com/photo-1718917911083-7c830776e337?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
+  const SUN_URL =
+    "https://images.unsplash.com/photo-1704104253303-8611ca48c1cf?q=80&w=1988&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
+  const COLD_URL =
+  "https://images.unsplash.com/photo-1641732423736-2c9ebb3e8338?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
 
   return (
     <div className="InfoBox">
-      {/* <Typography variant="h6" gutterBottom>
-        Weather Info: {info.weather || "N/A"}
-      </Typography> */}
-      <Card sx={{ maxWidth: "max", boxShadow: 3, margin: 0 }}>
+      <Card sx={{ maxWidth: "100%", boxShadow: 3, margin: 0 }}>
         <CardMedia
           sx={{ height: 120 }}
-          image={IMAGE_URL}
+          image={
+            info.humidity > 80 ? CLOUD_URL : info.temp < 15 ? COLD_URL : SUN_URL
+          }
           title="Weather Image"
         />
         <CardContent>
